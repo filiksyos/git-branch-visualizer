@@ -66,15 +66,15 @@ export async function GET(request: NextRequest) {
       branches: branches.map(b => ({
         name: b.name,
         sha: b.commit.sha,
-        author: b.commit.commit.author.name,
-        date: b.commit.commit.author.date,
-        message: b.commit.commit.message,
+        author: b.commit.commit?.author?.name || 'Unknown',
+        date: b.commit.commit?.author?.date || '',
+        message: b.commit.commit?.message || '',
       })),
       commits: commits.slice(0, 10).map((c: any) => ({
         sha: c.sha,
-        message: c.commit.message,
-        author: c.commit.author.name,
-        date: c.commit.author.date,
+        message: c.commit?.message || '',
+        author: c.commit?.author?.name || 'Unknown',
+        date: c.commit?.author?.date || '',
       })),
     });
   } catch (error) {

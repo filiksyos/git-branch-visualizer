@@ -1,7 +1,8 @@
 'use client';
 
-import { useCallback } from 'react';
-import ReactFlow, {
+import { useCallback, useEffect } from 'react';
+import {
+  ReactFlow,
   Background,
   Controls as FlowControls,
   MiniMap,
@@ -25,11 +26,11 @@ export default function Canvas() {
   const [edges, setEdges, onEdgesChange] = useEdgesState(storeEdges);
 
   // Update local state when store changes
-  React.useEffect(() => {
+  useEffect(() => {
     setNodes(storeNodes);
   }, [storeNodes, setNodes]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setEdges(storeEdges);
   }, [storeEdges, setEdges]);
 
