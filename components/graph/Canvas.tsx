@@ -14,6 +14,7 @@ import {
 import { useGraphStore } from '@/lib/store/graphStore';
 import BranchNode from './BranchNode';
 import CommitNode from './CommitNode';
+import GitMVPLogo from '@/components/GitMVPLogo';
 
 const nodeTypes = {
   branch: BranchNode,
@@ -40,7 +41,7 @@ export default function Canvas() {
   );
 
   return (
-    <div className="flex-1 bg-gray-50">
+    <div className="flex-1 bg-gray-50 relative">
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -49,11 +50,23 @@ export default function Canvas() {
         onConnect={onConnect}
         nodeTypes={nodeTypes}
         fitView
+        proOptions={{ hideAttribution: true }}
       >
         <Background />
         <FlowControls />
         <MiniMap />
       </ReactFlow>
+      <div className="absolute bottom-4 right-4 flex items-center gap-2 px-3 py-2 bg-white/90 backdrop-blur-sm rounded-md shadow-sm border border-border/50 text-sm text-foreground z-10">
+        <a
+          href="https://gitmvp.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 hover:text-primary transition-colors font-medium"
+        >
+          <GitMVPLogo className="w-6 h-6" color="currentColor" />
+          <span>Built with GitMVP</span>
+        </a>
+      </div>
     </div>
   );
 }
